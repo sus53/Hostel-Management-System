@@ -22,17 +22,18 @@ function HostelMap() {
         zoom: 10
     })
 
-    // const getPins = async () => {
-    //     try {
-    //         setPins(await GetPin());
-    //         setNewPin(null);
-    //     } catch (error) {
-    //         console.log(error)
-    //     }
-    // }
+    const getPins = async () => {
+        try {
+            setPins(await GetPin());
+            setNewPin(null);
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     //fetching pins from database
     useEffect(() => {
-        //getPins();
+        getPins();
 
     }, [])
 
@@ -47,19 +48,11 @@ function HostelMap() {
         })
     }, [currentUser, review, rating, latitude, longitude])
 
-    const createPinHandler = async (e) => {
-        e.preventDefault();
-        await CreatePin(newPin);
-        await getPins();
-        setNewPin(null);
-    }
-
     const doubleClickHandler = (e) => {
         const { lng, lat } = e.lngLat;
         setLatitude(lat);
         setLongitude(lng);
     }
-
 
     return (
         <div className='Map'>
@@ -101,27 +94,6 @@ function HostelMap() {
                         </Popup> : ''}
                     </div>
                 )}
-                {newPin ? (<Popup longitude={newPin.longitude} latitude={newPin.latitude}
-                    anchor="left" closeOnClick={false} onClose={() => setNewPin(null)}
-                >
-                    <div className='create-card'>
-                        <label>Place</label>
-                        <input onChange={(e) => setPlace(e.target.value)} />
-                        <label>Review</label>
-                        <textarea onChange={(e) => setReview(e.target.value)} ></textarea>
-                        <label>Rating</label>
-                        <select onChange={(e) => setRating(e.target.value)} defaultValue="1">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                        </select>
-                        <div>
-                            <button onClick={(e) => createPinHandler(e)}>Pin</button>
-                        </div>
-                    </div>
-                </Popup>) : ''}
             </Map>
         </div>
     )

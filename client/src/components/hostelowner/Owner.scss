@@ -1,19 +1,22 @@
-.hostel-owner{
+.hostel-owner {
     height: 100vh;
     width: 100%;
     background-color: var(--div-bg);
     padding-top: 4rem;
     font-family: 'Roboto', sans-serif;
     color: var(--text-color);
-    .owner-dashboard{
+
+    .owner-dashboard {
         display: flex;
         justify-content: space-between;
         padding: 1rem 5rem;
-        div{
-            p{
-              font-size: 1.5rem;
+
+        div {
+            p {
+                font-size: 1.5rem;
             }
-            button{
+
+            button {
                 width: 8rem;
                 height: 2rem;
                 font-size: 1rem;
@@ -24,7 +27,8 @@
             }
         }
     }
-    .add-hostel{
+
+    .hostel-form {
         height: auto;
         width: 70%;
         background-color: var(--main-bg);
@@ -34,15 +38,18 @@
         padding: 1rem;
         position: absolute;
         top: 5rem;
-        .top-section{
+
+        .top-section {
             display: flex;
             justify-content: space-around;
-            div{
+
+            div {
                 display: flex;
                 flex-direction: column;
                 gap: 0.3rem;
-                div{
-                    input{
+
+                div {
+                    input {
                         width: 15rem;
                         height: 2rem;
                         background-color: var(--input-color);
@@ -52,7 +59,8 @@
                         border-radius: 0.2rem;
                         color: var(--text-color);
                     }
-                    textarea{
+
+                    textarea {
                         width: 15rem;
                         height: 12rem;
                         background-color: var(--input-color);
@@ -64,6 +72,7 @@
                         overflow: auto;
                         resize: none;
                     }
+
                     select {
                         width: 10rem;
                         height: 2rem;
@@ -76,20 +85,24 @@
                     }
                 }
             }
-            .map-section{
+
+            .map-section {
                 height: 20rem;
                 width: 20rem;
-                img{
+
+                img {
                     height: 20rem;
                     width: 20rem;
                 }
             }
         }
-        .bottom-section{
+
+        .bottom-section {
             display: flex;
             justify-content: center;
             align-items: center;
-            button{
+
+            button {
                 height: 2rem;
                 background-color: var(--purple-color);
                 border: none;
@@ -99,39 +112,73 @@
                 font-size: 1rem;
             }
         }
-        span{
+
+        span {
             position: absolute;
             font-size: 2rem;
             right: 1rem;
             cursor: pointer;
             color: var(--text-color);
         }
+
+        >.popupmap {
+            position: fixed;
+            top: 0%;
+            left: 0%;
+            width: 100vw;
+            z-index: 5;
+            height: 100vh;
+            background-color: rgb(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+
+            >.map {
+                position: absolute;
+                left: 20%;
+                top: 10%;
+
+                >.close {
+                    width: 1.5rem;
+                    height: 1.5rem;
+                    background-color: black;
+                    color: white;
+                    float: right;
+                }
+            }
+
+        }
     }
-    .hostel-info{
+
+    .hostel-info {
         height: 80vh;
         width: 100%;
-            table{
-                width: 100%;
-                padding: 0 5rem;
-                .table-title{
-                    background-color:  var(--table-title);
-                    height: 3rem;
-                }
-                .table-data{
-                    background-color:var(--table-td); 
-                    height: 2.5rem;
-                    text-align: center;
-                .description-cell{
+
+        table {
+            width: 100%;
+            padding: 0 5rem;
+
+            .table-title {
+                background-color: var(--table-title);
+                height: 3rem;
+            }
+
+            .table-data {
+                background-color: var(--table-td);
+                height: 2.5rem;
+                text-align: center;
+
+                .description-cell {
                     overflow-y: auto;
                     max-width: 15rem;
                     max-height: 3rem;
                 }
-                tr{
-                    td{
+
+                tr {
+                    td {
                         display: flex;
                         justify-content: center;
                         align-items: center;
-                        button{
+
+                        button {
                             height: 2rem;
                             width: 8rem;
                             background-color: #bfc2fd;
@@ -140,7 +187,8 @@
                             border: none;
                             font-size: 1rem;
                         }
-                        p{
+
+                        p {
                             margin-left: 2rem;
                         }
                     }
