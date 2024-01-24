@@ -1,0 +1,96 @@
+.Map {
+    .card {
+        width: 250px;
+        height: 250px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+
+        label {
+            width: max-content;
+            color: tomato;
+            font-size: 13px;
+            border-bottom: 0.5px solid tomato;
+            margin: 3px 0;
+        }
+
+        .place {
+            font-size: 14px;
+        }
+
+        .review {
+            font-size: 14px;
+        }
+
+        .rating {
+            >* {
+                color: gold;
+            }
+        }
+
+        .username {
+            font-size: 14px;
+        }
+
+        .date {
+            font-size: 12px;
+        }
+    }
+
+    .d-none {
+        display: none;
+    }
+
+    .create-card {
+        width: 250px;
+        height: 250px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        position: relative;
+
+
+        label {
+            width: max-content;
+            color: tomato;
+            font-size: 13px;
+            border-bottom: 0.5px solid tomato;
+            margin: 3px 0;
+        }
+
+        input,
+        select {
+            outline: none;
+            border: none;
+            font-size: 14px;
+            border-bottom: 0.5px solid lightgray;
+        }
+
+        textarea {
+            resize: none;
+            outline: none;
+            border: none;
+            font-size: 14px;
+            border-bottom: 0.5px solid lightgray;
+            height: 60px;
+        }
+
+        textarea::-webkit-scrollbar {
+            display: none;
+        }
+
+
+        button {
+            width: 100%;
+            color: white;
+            background-color: tomato;
+            border-radius: 5px;
+            border: 0.5px solid lightgray;
+        }
+
+        button:active {
+            background-color: rgb(180, 180, 180);
+        }
+
+    }
+}

@@ -1,0 +1,65 @@
+//manage-users-----------
+.manage-user{
+    height: 100vh;
+    width: 100%;
+    padding-top: 5rem;
+    align-items: center;
+    background-color: var(--div-bg);
+    color: var(--text-color);
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    table{
+        width: 70%;
+        .manage-title{
+            background-color:  var(--table-title);
+            height: 3rem;
+        }
+        .user-info{
+            background-color:var(--table-td); 
+            height: 2.5rem;
+            td{
+                text-align: center;
+            }
+        }
+    }
+    .edit-delete-popup{
+        position: absolute;
+        background-color: var(--main-bg);
+        height: auto;
+        padding: 1rem;
+        width: auto;
+        right: 10rem;
+        top: 7rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        button{
+            i{
+                font-size: 1.2rem;
+            }
+        }
+    }
+    .edit-section{
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+        background-color: var(--main-bg);
+        height: auto;
+        padding: 0.5rem;
+        div{
+            display: flex;
+            flex-direction: column;
+            label {
+                font-weight: bold;
+                margin-bottom: 5px;
+            }
+            select {
+                width: 150px; 
+                padding: 0.2rem;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
+        }
+    }
+}
