@@ -9,7 +9,7 @@ const authSlice = createSlice({
     },
     reducers: {
         setTheme: (state, action) => {
-            state.theme == "light" ? "dark" : "light"
+            state.theme = state.theme === "light-theme" ? "dark-theme" : "light-theme"
         },
         setLogin: (state, action) => {
             state.user = action.payload.user;

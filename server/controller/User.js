@@ -50,7 +50,7 @@ export const SignupUser = async (req, res) => {
         await newUser.save()
         delete newUser.password;
 
-        res.status(201).json({ newUser, message: "User Registered sucessfully" })
+        res.status(201).json({ user: newUser, message: "User Registered sucessfully" })
     } catch (error) {
         res.status(500).json({ message: error.message })
     }

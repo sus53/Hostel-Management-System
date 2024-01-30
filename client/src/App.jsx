@@ -14,12 +14,15 @@ import { ManageUser } from "./components/admin/ManageUser";
 import HostelMap from "./components/hostelMap/HostelMap";
 import { useEffect } from "react";
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import { useSelector } from "react-redux";
 
 function App() {
 
+  const storage = useSelector((state) => state)
+
   return (
     <GoogleOAuthProvider clientId="1045489467062-clci15u88ajefk8pk827189rc8gn3usf.apps.googleusercontent.com">
-      <div className='app'>
+      <div className={'app ' + storage.theme}>
         <Router>
           <Header />
           <div className='body'>

@@ -4,13 +4,14 @@ import { LoginUser } from '../../../function/User';
 import './User.scss';
 import { useEffect } from "react";
 import { GoogleLogin } from '@react-oauth/google';
-import { googleSignIn } from '../../../Utensils/GoogleHandler';
+import { useDispatch } from 'react-redux';
+import { setLogin } from '../../../redux/Index';
 
 export const Login = () => {
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const [isLogin, setIsLogin] = useState(true);
   const [show, setShow] = useState(false);
   const [response, setResponse] = useState(null);
   const [user, setUser] = useState({
@@ -29,14 +30,16 @@ export const Login = () => {
   const LoginHandler = async (e) => {
     e.preventDefault();
     const res = await LoginUser(user);
-    setIsLogin(res);
     if (res.user === "") return;
+    dispatch(setLogin({ user: res.user }))
     navigate('/');
   };
 
-  const googleSignInHandler = (credential) => {
-    const res = googleSignIn(credential);
+  const googleSignInHandler = async (cred) => {
+    const user = { ctoken: cred }
+    const res = await LoginUser(user);
     if (res.user === "") return;
+    dispatch(setLogin({ user: res.user }))
     navigate('/');
   }
 

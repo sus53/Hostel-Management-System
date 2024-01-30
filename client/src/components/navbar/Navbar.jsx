@@ -6,23 +6,21 @@ import './Navbar.scss';
 import { ProfileDropdown } from './ProfileDropdown';
 import moon from '../../assets/moon.png';
 import sun from '../../assets/sun.png';
+import { useDispatch, useSelector } from 'react-redux';
+import { setTheme } from '../../redux/Index';
 
 const Navbar = () => {
-  const [theme, setTheme] = useState("light-theme");
-
-  useEffect(() => {
-    document.body.className = theme;
-  }, [theme]);
-  const toggleTheme = () => {
-    if (theme === 'dark-theme') {
-      setTheme('light-theme')
-    } else {
-      setTheme("dark-theme")
-    }
-  }
-
   const [openHostel, setOpenHostel] = useState(false);
   const [openProfile, setOpenProfile] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const storage = useSelector((state) => state)
+
+  const toggleTheme = () => {
+    dispatch(setTheme());
+  }
+
   return (
     <>
       <nav>
@@ -43,20 +41,28 @@ const Navbar = () => {
               )
             }
           </li>
-          <li className='profile' onClick={() => setOpenProfile((prev) => !prev)}>Profile
+          <li className='profile' onClick={() => setOpenProfile((prev) => !prev)}>
+
             {
-              openProfile && (
-                <ProfileDropdown />
-              )
+              storage.user ?
+                <>
+                  {storage.user.username}
+                  {openProfile && (
+                    <ProfileDropdown />
+                  )}
+                </>
+                :
+                <Link to='/login' className='link'>Login</Link>
             }
+
           </li>
           <li className='toggle'>
             <div onClick={() => toggleTheme()}>
-              {theme === 'light-theme' ? (<img src={moon} />) : (<img src={sun} className="sun-icon" />)}
+              {storage.theme === 'light-theme' ? (<img src={moon} />) : (<img src={sun} className="sun-icon" style={{ fill: "white" }} />)}
             </div>
           </li>
         </ul>
-      </nav>
+      </nav>                0
     </>
   );
 };
