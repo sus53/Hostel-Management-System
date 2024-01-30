@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
- 
+
 const HostelSchema = new mongoose.Schema({
     title: {
         type: String,
@@ -24,6 +24,14 @@ const HostelSchema = new mongoose.Schema({
     sex: {
         type: String,
         required: true
+    },
+    image: {
+        type: String,
+        required: false
+    },
+    imagePath: {
+        type: String,
+        required: false
     }
 }, { timestamps: true });
 const Hostel = new mongoose.model("Hostel", HostelSchema);

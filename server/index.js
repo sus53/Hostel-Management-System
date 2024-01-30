@@ -7,6 +7,7 @@ import { fileURLToPath } from 'url';
 import mongoose from "mongoose";
 import UserRouter from './router/User.js';
 import HostelRouter from './router/Hostel.js';
+import { AddHostel } from './controller/Hostel.js';
 
 /* Configurations */
 
@@ -37,6 +38,7 @@ const upload = multer({ storage });
 
 /*Routes with files*/
 
+app.post('/hostel/', upload.single('image'), AddHostel);
 
 
 /* Routes */

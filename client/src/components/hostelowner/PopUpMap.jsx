@@ -6,41 +6,9 @@ import './Owner.scss';
 import { LocationOn, Star } from '@mui/icons-material';
 import { CreatePin, GetPin } from '../../function/Pin';
 
-function PopUpMap({ mapToggler }) {
-    const [currentUser, setCurrentUser] = useState(null);
-    const [pins, setPins] = useState([])
-    const [newPin, setNewPin] = useState(null);
-    const [currentPlaceId, setCurrentPlaceId] = useState(null);
-    const [place, setPlace] = useState(null);
-    const [review, setReview] = useState(null);
-    const [rating, setRating] = useState(null);
-    const [longitude, setLongitude] = useState(null);
-    const [latitude, setLatitude] = useState(null);
-    const [viewport, setViewport] = useState({
-        longitude: 85.31295,
-        latitude: 27.712017,
-        zoom: 10
-    })
+function PopUpMap({ mapToggler, setHostel }) {
 
-    useEffect(() => {
-        setNewPin({
-            username: currentUser,
-            place,
-            review,
-            rating,
-            longitude,
-            latitude
-        })
-    }, [currentUser, review, rating, latitude, longitude])
-
-    const createPinHandler = async (e) => {
-        e.preventDefault();
-        await CreatePin(newPin);
-        await getPins();
-        setNewPin(null);
-    }
-
-    const doubleClickHandler = async (e) => {
+    const fetchLocation = async (e) => {
         const { lng, lat } = e.lngLat;
 
         // Fetch place name using OpenCage Geocoding API
@@ -51,15 +19,12 @@ function PopUpMap({ mapToggler }) {
 
             if (data.results.length > 0) {
                 const placeName = data.results[0].formatted;
-                setPlace(placeName);
-                console.log(placeName)
+                setHostel(hostel => ({ ...hostel, location: placeName }));
+                mapToggler();
             }
         } catch (error) {
             console.error('Error fetching place name:', error);
         }
-
-        setLongitude(lng);
-        setLatitude(lat);
     }
 
     return (
@@ -67,14 +32,16 @@ function PopUpMap({ mapToggler }) {
             <div className='map'>
                 <button className='close' onClick={() => mapToggler()} > X </button>
                 <Map mapLib={maplibregl}
-                    initialViewState={viewport}
+                    initialViewState={{
+                        longitude: 85.31295,
+                        latitude: 27.712017,
+                        zoom: 10
+                    }}
                     mapboxAccessToken="sk.eyJ1Ijoic2hyZWVqYW4zNSIsImEiOiJjbGV0Z2owYzcxZzIwM3VydmFmaGczOHZ4In0.7GkO0WW9li6EjPoAwHVxLw"
                     style={{ width: "60vw", height: "70vh", zIndex: "0" }}
                     mapStyle="https://api.maptiler.com/maps/streets/style.json?key=mzxBoE1FbFirkKahjGeW"
-                    onDblClick={(e) => doubleClickHandler(e)}
-                    onClick={() => setNewPin(null)}
+                    onDblClick={(e) => fetchLocation(e)}
                 >
-                    {/* Your map components, markers, popups, etc. go here */}
                 </Map>
             </div>
         </div>

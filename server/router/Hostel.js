@@ -4,7 +4,7 @@ import { GetHostel, AddHostel, DeleteHostel, EditHostel } from '../controller/Ho
 const router = express.Router();
 
 router.get('/', GetHostel);
-router.post('/', AddHostel);
-router.put('/:id', EditHostel);
+
+router.patch('/:id', EditHostel);
 router.delete('/:id', DeleteHostel);
 export default router;
