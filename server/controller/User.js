@@ -2,6 +2,7 @@ import jwt from 'jsonwebtoken';
 import User from '../model/User.js';
 import bcrypt from 'bcrypt';
 import { jwtDecode } from 'jwt-decode';
+import nodemailer from 'nodemailer';
 
 export const GetUser = async (req, res) => {
     try {
@@ -81,7 +82,7 @@ export const LoginUser = async (req, res) => {
             maxAge: 60 * 60 * 24 * 30 * 1000
         })
 
-        return res.status(201).json({ user: userDB, message: "Log in Successfull" });
+        res.status(201).json({ user: userDB, message: "Log in Successfull" });
     } catch (error) {
         res.status(404).json({ message: error.message });
     }
@@ -90,4 +91,49 @@ export const LoginUser = async (req, res) => {
 
 const createToken = (user) => {
     return jwt.sign({ id: user.email }, process.env.SECRET_KEY)
+}
+
+export const ForgotPassword = async (req, res) => {
+    const { email } = req.body;
+
+    try {
+        const user = await User.findOne({ email: email })
+        if (!user) {
+            return res.status(404).json({ message: "User not found" })
+        }
+
+        const token = createToken(user);
+
+        let transporter = nodemailer.createTransport({
+            service: 'gmail',
+            host: 'smtp.gmail.com',
+            port: 587,
+            secure: false,
+            auth: {
+                user: process.env.mailer_gmail,
+                pass: process.env.app_code
+            }
+        });
+
+        let mailOptions = {
+            from: {
+                name: 'Sanoghar',
+                address: 'Sanoghar@gmail.com'
+            },
+            to: email,
+            subject: 'Reset Password',
+            text: `Click this link to reset your password : http://localhost:5173/resetpassword/${user._id}/${token}`
+        };
+
+        transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+                res.status(500).json({ message: error.message })
+            } else {
+                res.status(200).json(true)
+            }
+        });
+
+    } catch (error) {
+        res.status(500).json({ message: error.message })
+    }
 }

@@ -15,6 +15,7 @@ import HostelMap from "./components/hostelMap/HostelMap";
 import { useEffect } from "react";
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { useSelector } from "react-redux";
+import ResetPassword from "./components/navbar/user/ResetPassword";
 
 function App() {
 
@@ -37,6 +38,7 @@ function App() {
               <Route path='/cart' element={<Cart />} />
               <Route path='/manageuser' element={<ManageUser />} />
               <Route path='/map' element={<HostelMap />} />
+              <Route path='/resetpassword/:id/:token' element={<ResetPassword />} />
             </Routes>
           </div>
         </Router>

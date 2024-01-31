@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { SignupUser } from '../../../function/User';
 import './User.scss';
 import { GoogleLogin } from '@react-oauth/google';
-import { jwtDecode } from 'jwt-decode';
+import { useDispatch } from 'react-redux';
+import { setLogin } from '../../../redux/Index';
 
 export const Signup = () => {
   const navigate = useNavigate();
@@ -30,6 +31,7 @@ export const Signup = () => {
     const res = await SignupUser(user);
     setResponse(res.message);
     if (res.message === "User Registered sucessfully") {
+      dispatch(setLogin({ user: res.user }))
       navigate('/')
     } else {
       console.log(res.message);
@@ -40,6 +42,7 @@ export const Signup = () => {
     const user = { ctoken: credential }
     const res = await SignupUser(user);
     if (res.message === "User Registered sucessfully") {
+      dispatch(setLogin({ user: res.user }))
       navigate('/')
     } else {
       console.log(res.message);

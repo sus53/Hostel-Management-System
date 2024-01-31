@@ -4,7 +4,7 @@ export const GetUser = async () => {
     try {
         const { data } = await api.GetUser();
         return data
-    } catch(error) {
+    } catch (error) {
         console.log(error)
     }
 }
@@ -22,7 +22,16 @@ export const LoginUser = async (user) => {
     try {
         const { data } = await api.LoginUser(user);
         return data
-    } catch(error) {
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const forgotPassword = async (user) => {
+    try {
+        const { data } = await api.ForgotPassword(user);
+        return data
+    } catch (error) {
         console.log(error)
     }
 }
