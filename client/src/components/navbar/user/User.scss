@@ -6,7 +6,7 @@
     align-items: center;
     color: var(--text-color);
     font-family: 'Roboto', sans-serif;
-    padding-top: 8rem;
+    padding-top: 4rem;
     background-color: var(--main-bg);
 }
 
@@ -204,7 +204,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    padding-top: 8rem;
+    padding-top: 4rem;
     font-family: 'Roboto', sans-serif;
     background-color: var(--main-bg);
     color: var(--text-color);
@@ -319,3 +319,5 @@
         }
     }
 }
+
+.reset-password {}

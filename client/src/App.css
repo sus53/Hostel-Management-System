@@ -1,8 +1,9 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
 @font-face {
     font-family: 'Roboto', sans-serif;
     src: url(../public/font/Roboto-Black.ttf);
@@ -24,7 +25,8 @@
     src: url(../public/font/YoungSerif-Regular.ttf);
 
 }
-.dark-theme{
+
+.dark-theme {
     --div-bg: #16181c;
     --main-bg: #000000;
     --text-color: #fff;
@@ -32,11 +34,12 @@
     --light-white: #2f2f2f;
     --hostel-div: #70777d;
     --comment-section: #3c3c3c;
-    --input-color:#333; 
-    --table-td:#333;
-    --table-title:#000;
+    --input-color: #333;
+    --table-td: #333;
+    --table-title: #000;
 }
-.light-theme{
+
+.light-theme {
     --div-bg: #f7f9f9;
     --main-bg: #f1f5f9;
     --text-color: #000;
@@ -44,7 +47,11 @@
     --light-white: #f2f2f2;
     --hostel-div: #bbc0c5;
     --comment-section: #f0f1f3;
-    --input-color:#ececec;
-    --table-td:#f3eded;
-    --table-title:#bbbfff;
+    --input-color: #ececec;
+    --table-td: #f3eded;
+    --table-title: #bbbfff;
+}
+
+.body {
+    margin-top: 4rem;
 }

@@ -47,6 +47,7 @@ export const Login = () => {
     setShow(!show);
   };
 
+
   return (
     <>
       <div className='login'>
@@ -67,7 +68,8 @@ export const Login = () => {
             <button type='submit' className='login-btn' onClick={(e) => LoginHandler(e)}>Login</button>
           </div>
           <GoogleLogin
-            text="Sign up with Google"
+            text="signin_with"
+            size='medium'
             onSuccess={res => {
               googleSignInHandler(res.credential);
             }}

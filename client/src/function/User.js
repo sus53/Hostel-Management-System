@@ -35,3 +35,12 @@ export const forgotPassword = async (user) => {
         console.log(error)
     }
 }
+
+export const resetPassword = async (user) => {
+    try {
+        const { data } = await api.ResetPassword(user);
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+}

@@ -22,7 +22,7 @@ const Navbar = () => {
   }
 
   return (
-    <>
+    <div>
       <nav>
         <Link to='/' className='link'>
           <span>
@@ -62,8 +62,8 @@ const Navbar = () => {
             </div>
           </li>
         </ul>
-      </nav>                0
-    </>
+      </nav>
+    </div>
   );
 };
 

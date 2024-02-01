@@ -103,8 +103,8 @@ export const Signup = () => {
             onSuccess={res => {
               googleSignUpHandler(res.credential);
             }}
-            text={"signup_with"}
-            locale={"en"}
+            size='medium'
+            text="signup_with"
           />
         </form>
       </div>

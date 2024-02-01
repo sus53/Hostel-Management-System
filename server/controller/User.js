@@ -57,6 +57,25 @@ export const SignupUser = async (req, res) => {
     }
 }
 
+export const editUser = async (req, res) => {
+
+    try {
+        const { id } = req.params;
+        const { firstname, lastname, email, username, mobilenumber, password, gender } = req.body;
+        if (await User.findOne({ _id: id })) {
+            return res.status(400).json({ message: 'User is missing' })
+        }
+        const updatedUser = await User.findByIdAndUpdate(
+            { _id: id },
+            { firstname, lastname, email, username, mobilenumber, password, gender }
+        )
+        res.status(200).json({ message: 'User updated sucessfully', user: updatedUser })
+    } catch (error) {
+        console.error('error updating user', error);
+        res.status(500).json({ message: 'Error updating user', error: error.message })
+    }
+}
+
 export const LoginUser = async (req, res) => {
     let user = req.body;
     let logWithToken = false;
