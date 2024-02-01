@@ -8,6 +8,8 @@ import { setLogin } from '../../../redux/Index';
 
 export const Signup = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const [user, setUser] = useState({
     firstname: "",
     lastname: "",
@@ -18,6 +20,7 @@ export const Signup = () => {
     gender: "none"
   })
   const [response, setResponse] = useState(null)
+
   const handleChange = e => {
     const { name, value } = e.target
     setUser({

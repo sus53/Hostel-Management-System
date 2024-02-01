@@ -27,7 +27,7 @@ export const SignupUser = async (req, res) => {
 
         if (userdb) return res.status(200).json({ message: "User already registered" });
 
-        const salt = await bcrypt.genSalt();
+        const salt = await bcrypt.genSalt(5);
         let newUser = "";
 
         if (logWithToken) {
@@ -57,19 +57,23 @@ export const SignupUser = async (req, res) => {
     }
 }
 
-export const editUser = async (req, res) => {
+export const ResetPassword = async (req, res) => {
 
     try {
-        const { id } = req.params;
-        const { firstname, lastname, email, username, mobilenumber, password, gender } = req.body;
-        if (await User.findOne({ _id: id })) {
+
+        const { _id, password } = req.body;
+        if (!await User.findOne({ _id })) {
             return res.status(400).json({ message: 'User is missing' })
         }
-        const updatedUser = await User.findByIdAndUpdate(
-            { _id: id },
-            { firstname, lastname, email, username, mobilenumber, password, gender }
+        const salt = await bcrypt.genSalt(5);
+        const hashedPassword = await bcrypt.hash(password, salt)
+        const updatedPassword = await User.findByIdAndUpdate(
+            { _id },
+            { password: hashedPassword }
         )
-        res.status(200).json({ message: 'User updated sucessfully', user: updatedUser })
+
+        delete updatedPassword.password;
+        res.status(200).json({ message: 'User password updated sucessfully', user: updatedPassword })
     } catch (error) {
         console.error('error updating user', error);
         res.status(500).json({ message: 'Error updating user', error: error.message })
