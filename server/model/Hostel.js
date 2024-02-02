@@ -32,6 +32,10 @@ const HostelSchema = new mongoose.Schema({
     imagePath: {
         type: String,
         required: false
+    },
+    latlng: {
+        type: Object,
+        required: false
     }
 }, { timestamps: true });
 const Hostel = new mongoose.model("Hostel", HostelSchema);

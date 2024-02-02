@@ -16,6 +16,7 @@ import { useEffect } from "react";
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { useSelector } from "react-redux";
 import ResetPassword from "./components/navbar/user/ResetPassword";
+import Admin from "./components/admin/Admin";
 
 function App() {
 
@@ -39,6 +40,7 @@ function App() {
               <Route path='/manageuser' element={<ManageUser />} />
               <Route path='/map' element={<HostelMap />} />
               <Route path='/resetpassword/:id/:token' element={<ResetPassword />} />
+              <Route path='/admin' element={<Admin />} />
             </Routes>
           </div>
         </Router>

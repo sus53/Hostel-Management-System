@@ -4,7 +4,7 @@ import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import './HostelMap.scss';
 import { LocationOn, Star } from '@mui/icons-material';
-import { CreatePin, GetPin } from '../../function/Pin';
+import { GetHostel } from '../../function/Hostel';
 function HostelMap() {
 
     const [currentUser, setCurrentUser] = useState(null);
@@ -24,8 +24,7 @@ function HostelMap() {
 
     const getPins = async () => {
         try {
-            setPins(await GetPin());
-            setNewPin(null);
+            setPins(await GetHostel());
         } catch (error) {
             console.log(error)
         }
@@ -34,24 +33,11 @@ function HostelMap() {
     //fetching pins from database
     useEffect(() => {
         getPins();
-
     }, [])
 
-    useEffect(() => {
-        setNewPin({
-            username: currentUser,
-            place,
-            review,
-            rating,
-            longitude,
-            latitude
-        })
-    }, [currentUser, review, rating, latitude, longitude])
-
     const doubleClickHandler = (e) => {
-        const { lng, lat } = e.lngLat;
-        setLatitude(lat);
-        setLongitude(lng);
+
+
     }
 
     return (
@@ -67,29 +53,20 @@ function HostelMap() {
 
                 {pins && pins.map(pin =>
                     <div key={pin._id}>
-                        <Marker longitude={pin.longitude} latitude={pin.latitude} anchor="bottom" offsetLeft={0} offsetTop={0}>
-                            <LocationOn style={{ fontSize: viewport.zoom * 3, color: (currentUser == pin.username) ? 'red' : 'blue', zIndex: "10", cursor: "pointer" }} onClick={() => { setCurrentPlaceId(pin._id); setViewport({ longitude: pin.longitude, latitude: pin.latitude, zoom: 8 }); setNewPin(null) }} />
+                        <Marker longitude={pin.latlng.lng} latitude={pin.latlng.lat} anchor="bottom" offsetLeft={0} offsetTop={0}>
+                            <LocationOn style={{ fontSize: viewport.zoom * 3, color: 'red', zIndex: "10", cursor: "pointer" }} onClick={() => { setCurrentPlaceId(pin._id); setViewport({ longitude: pin.latlng.lng, latitude: pin.latlng.lat, zoom: 8 }); setNewPin(null) }} />
                         </Marker>
 
-                        {(currentPlaceId == pin._id) ? <Popup longitude={pin.longitude} latitude={pin.latitude}
+                        {(currentPlaceId == pin._id) ? <Popup longitude={pin.latlng.lng} latitude={pin.latlng.lat}
                             anchor="left" closeOnClick={false} onClose={() => setCurrentPlaceId(null)} closeOnMove={() => setCurrentPlaceId(null)}
                         >
                             <div className='card'>
-                                <label>Place</label>
-                                <h4 className='place'>{pin.place}</h4>
-                                <label>Review</label>
-                                <p className='review'>{pin.review}</p>
-                                <label>Rating</label>
-                                <div className='rating'>
-                                    {Array(pin.rating).fill(<Star key={pin._id} />)}
-                                </div>
-                                <label>Information</label>
-                                <span className='username'>
-                                    Created by <b>{pin.username}</b>
-                                </span>
-                                <span className='date'>
-                                    {format(pin.createdAt)}
-                                </span>
+                                <div>Title: {pin.title}</div>
+                                <div>Room: {pin.room}</div>
+                                <div>Sex: {pin.sex}</div>
+                                <div>Price: {pin.price}</div>
+                                <div>Location: {pin.location}</div>
+                                <div>Description: {pin.description}</div>
                             </div>
                         </Popup> : ''}
                     </div>

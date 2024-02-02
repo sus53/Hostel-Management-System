@@ -4,7 +4,6 @@ import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import './Owner.scss';
 import { LocationOn, Star } from '@mui/icons-material';
-import { CreatePin, GetPin } from '../../function/Pin';
 
 function PopUpMap({ mapToggler, setHostel }) {
 
@@ -19,7 +18,7 @@ function PopUpMap({ mapToggler, setHostel }) {
 
             if (data.results.length > 0) {
                 const placeName = data.results[0].formatted;
-                setHostel(hostel => ({ ...hostel, location: placeName }));
+                setHostel(hostel => ({ ...hostel, location: placeName, latlng: { lat, lng } }));
                 mapToggler();
             }
         } catch (error) {

@@ -7,7 +7,7 @@ import HostelForm from './HostelForm';
 export const Owner = () => {
   const [isForm, setIsForm] = useState(false);
   const [hostels, setHostels] = useState([]);
-  const [hostel, setHostel] = useState({});
+  const [hostel, setHostel] = useState({ sex: "Boys" });
   const [isEditHostel, setIsEditHostel] = useState(false);
 
   const formToggler = () => {
@@ -18,9 +18,11 @@ export const Owner = () => {
     const res = await GetHostel();
     setHostels(res);
   }
+
   useEffect(() => {
     FetchHostel();
   }, []);
+
   return (
     <>
       <div className='hostel-owner'>
@@ -48,7 +50,7 @@ export const Owner = () => {
               </tr>
             </thead>
             <tbody>
-              {hostels.map((hostel, index) => (
+              {hostels && hostels.map((hostel, index) => (
                 <tr key={index} className='table-data'>
                   <td>{index + 1}</td>
                   <td>{hostel.title}</td>

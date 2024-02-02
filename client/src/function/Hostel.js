@@ -29,7 +29,7 @@ export const DeleteHostel = async (hostelId) => {
     try {
         const { data } = await api.DeleteHostel(hostelId);
         return data;
-    } catch(error) {
+    } catch (error) {
         console.log(error);
     }
 }

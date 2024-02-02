@@ -11,17 +11,19 @@ export const GetHostel = async (req, res) => {
 }
 
 export const AddHostel = async (req, res) => {
-    const { title, description, room, price, location, sex, imagePath } = req.body
+    const { title, description, room, price, location, sex, imagePath, latlng } = req.body
     try {
         let hostel = await Hostel.findOne({ title: title })
 
-        if (hostel) { res.status(200).json({ message: "hostel already added" }) }
+        if (hostel) { return res.status(200).json({ message: "hostel already added" }) }
 
         const newHostel = new Hostel({
-            title, description, room, price, location, sex, imagePath
+            title, description, room, price, location, sex, imagePath, latlng
         })
+
         await newHostel.save()
-        res.status(201).json({ message: "New hostel added" })
+
+        res.status(201).json({ message: "New hostel added", success: true })
 
     } catch (error) {
         res.status(401).json({ message: error.message })

@@ -2,11 +2,16 @@ import React, { useState } from 'react'
 import PopUpMap from './PopUpMap';
 import { AddHostel } from '../../function/Hostel';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 function HostelForm({ formToggler, setHostel, hostel }) {
 
     const dispatch = useDispatch();
     const dt = useSelector((state) => state);
     const [isMap, setIsMap] = useState(false);
+    const [response, setResponse] = useState(null);
+
+    const navigate = useNavigate();
+
     const mapToggler = () => {
         setIsMap(!isMap);
         console.log(dt)
@@ -14,20 +19,11 @@ function HostelForm({ formToggler, setHostel, hostel }) {
 
     const addHostelHandler = async (e) => {
         e.preventDefault();
-        const formData = new FormData();
-        formData.append('title', hostel.title);
-        formData.append('description', hostel.description);
-        formData.append('room', hostel.room);
-        formData.append('price', hostel.price);
-        formData.append('location', hostel.location);
-        formData.append('sex', hostel.sex);
-        if (hostel.image) {
-            formData.append('image', hostel.image);
-            formData.append('imagePath', hostel.imagePath);
-        }
 
-        const res = await AddHostel(formData);
-        console.log(res)
+        const res = await AddHostel(hostel);
+        setResponse(res);
+        if (!res.success) return;
+        navigate('/hostelowner')
     }
 
     return (
@@ -58,9 +54,9 @@ function HostelForm({ formToggler, setHostel, hostel }) {
                 <div>
                     <div>
                         <label>Sex</label>
-                        <select value={hostel.sex} onChange={(e) => setHostel({ ...hostel, sex: e.target.value })} >
-                            <option>Boys</option>
-                            <option>Girls</option>
+                        <select onChange={(e) => setHostel({ ...hostel, sex: e.target.value })} >
+                            <option value="Boys">Boys</option>
+                            <option value="Girls">Girls</option>
                         </select>
                     </div>
                     <div>
