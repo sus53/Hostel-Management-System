@@ -21,7 +21,7 @@ export const AddHostel = async (req, res) => {
             title, description, room, price, location, sex, imagePath, latlng
         })
 
-        await newHostel.save();
+        await newHostel.save()
 
         res.status(201).json({ message: "New hostel added", success: true })
 
