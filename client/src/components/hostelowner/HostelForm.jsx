@@ -19,11 +19,23 @@ function HostelForm({ formToggler, setHostel, hostel }) {
 
     const addHostelHandler = async (e) => {
         e.preventDefault();
-
-        const res = await AddHostel(hostel);
+        const formData = new FormData();
+        formData.append("title", hostel.title);
+        formData.append("description", hostel.description);
+        formData.append("room", hostel.room);
+        formData.append("price", hostel.price);
+        formData.append("location", hostel.location);
+        formData.append("sex", hostel.sex);
+        formData.append("latlng", JSON.stringify(hostel.latlng));
+        if (hostel.imagepath) {
+            formData.append("image", hostel.image);
+            formData.append("imagepath", hostel.imagepath);
+        }
+        const res = await AddHostel(formData);
         setResponse(res);
         if (!res.success) return;
-        navigate('/hostelowner')
+        formToggler();
+        setHostel()
     }
 
     return (
@@ -48,7 +60,7 @@ function HostelForm({ formToggler, setHostel, hostel }) {
                     </div>
                     <div>
                         <label>Image</label>
-                        <input type='file' onChange={(e) => setHostel({ ...hostel, image: e.target.files[0], imagePath: e.target.files[0].name })} />
+                        <input type='file' onChange={(e) => setHostel({ ...hostel, image: e.target.files[0], imagepath: e.target.files[0].name })} />
                     </div>
                 </div>
                 <div>

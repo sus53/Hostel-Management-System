@@ -1,7 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { HostelDropdown } from './HostelDropdown';
 import './Navbar.scss';
 import { ProfileDropdown } from './ProfileDropdown';
 import moon from '../../assets/moon.png';
@@ -34,13 +33,7 @@ const Navbar = () => {
           <li><Link className='link' to='/'>Home</Link></li>
           <li>About</li>
           <li><Link to={'/map'} className='link'>Map</Link></li>
-          <li onClick={() => setOpenHostel((prev) => !prev)}>Hostel
-            {
-              openHostel && (
-                <HostelDropdown />
-              )
-            }
-          </li>
+          <li><Link className='link' to='/hostel'>Hostel</Link></li>
           <li className='profile' onClick={() => setOpenProfile((prev) => !prev)}>
 
             {

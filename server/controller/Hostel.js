@@ -11,14 +11,15 @@ export const GetHostel = async (req, res) => {
 }
 
 export const AddHostel = async (req, res) => {
-    const { title, description, room, price, location, sex, imagePath, latlng } = req.body
+    const latlng = JSON.parse(req.body.latlng)
+    const { title, description, room, price, location, sex, imagepath } = req.body
     try {
         let hostel = await Hostel.findOne({ title: title })
 
         if (hostel) { return res.status(200).json({ message: "hostel already added" }) }
 
         const newHostel = new Hostel({
-            title, description, room, price, location, sex, imagePath, latlng
+            title, description, room, price, location, sex, imagepath, latlng
         })
 
         await newHostel.save()

@@ -21,7 +21,7 @@ export const Owner = () => {
 
   useEffect(() => {
     FetchHostel();
-  }, []);
+  }, [isForm]);
 
   return (
     <>

@@ -8,6 +8,7 @@ import mongoose from "mongoose";
 import UserRouter from './router/User.js';
 import HostelRouter from './router/Hostel.js';
 import { AddHostel } from './controller/Hostel.js';
+import HostelReviewRouter from './router/HostelReview.js';
 
 /* Configurations */
 
@@ -21,8 +22,7 @@ dotenv.config();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
-app.use('/assets', express.static(path.join(__dirname, 'public/assets')));
-
+app.use('/assets', express.static('public/assets'));
 /* File Storage */
 
 const storage = multer.diskStorage({
@@ -44,6 +44,7 @@ app.post('/hostel/addhostel', upload.single('image'), AddHostel);
 /* Routes */
 app.use('/user', UserRouter);
 app.use('/hostel', HostelRouter);
+app.use('/hostelreview', HostelReviewRouter);
 
 /* Mongoose Setup */
 

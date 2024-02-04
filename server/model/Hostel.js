@@ -29,7 +29,7 @@ const HostelSchema = new mongoose.Schema({
         type: String,
         required: false
     },
-    imagePath: {
+    imagepath: {
         type: String,
         required: false
     },
