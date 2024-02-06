@@ -42,7 +42,7 @@ export const HostelDetail = () => {
   }
 
   const getReviews = async () => {
-    const res = await GetHostelReview();
+    const res = await GetHostelReview({ hostel: state.title });
     setReviews(res);
   }
 

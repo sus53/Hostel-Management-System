@@ -1,8 +1,8 @@
 import * as api from '../api/HostelReview'
 
-export const GetHostelReview = async () => {
+export const GetHostelReview = async (hostel) => {
     try {
-        const { data } = await api.GetHostelReview();
+        const { data } = await api.GetHostelReview(hostel);
         return data
     } catch (error) {
         console.log(error)

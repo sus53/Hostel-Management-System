@@ -1,8 +1,9 @@
 import HostelReview from "../model/HostelReview.js";
 
 export const GetHostelReview = async (req, res) => {
+    const { hostel } = req.body
     try {
-        const review = await HostelReview.find()
+        const review = await HostelReview.find({ hostel })
         res.status(200).json(review)
     } catch (error) {
         res.status(401).json({ message: error.message })

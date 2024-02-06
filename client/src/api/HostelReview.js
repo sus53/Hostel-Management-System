@@ -1,5 +1,5 @@
 import axios from "axios";
 const URL = "http://localhost:5000/hostelreview"
 
-export const GetHostelReview = () => axios.get(URL)
-export const AddHostelReview = (hostelreview) => axios.post(URL, hostelreview)
+export const GetHostelReview = (hostel) => axios.post(URL, hostel)
+export const AddHostelReview = (hostelreview) => axios.post(URL + "/addhostelreview", hostelreview)
