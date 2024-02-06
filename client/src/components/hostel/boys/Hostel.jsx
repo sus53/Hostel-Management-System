@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import img1 from '../../../assets/carousel/one.jpg'
 import './Hosteldetail.scss';
-import { GetHostel } from '../../../function/Hostel';
+import { GetVerifiedHostel } from '../../../function/Hostel';
 export const Hostel = () => {
 
     const navigate = useNavigate();
@@ -10,7 +10,7 @@ export const Hostel = () => {
     const [hostels, setHostels] = useState([]);
 
     const getHostels = async () => {
-        const res = await GetHostel();
+        const res = await GetVerifiedHostel();
         setHostels(res);
     }
 
@@ -30,7 +30,7 @@ export const Hostel = () => {
                     hostels && hostels.map((hostel) => (
                         <div className='hostel-boys-item' key={hostel._id} >
                             <div>
-                                <img src={`http://localhost:5000/assets/${hostel.imagepath}`} />
+                                <img src={`http://localhost:5000/assets/${hostel.imagepath1}`} />
                             </div>
                             <div className='hostel-highlight'>
                                 <div className='highlight-one'>

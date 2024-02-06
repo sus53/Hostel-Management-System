@@ -1,10 +1,11 @@
 import express from 'express';
-import { GetHostel, AddHostel, DeleteHostel, EditHostel } from '../controller/Hostel.js';
+import { GetVerifiedHostel, GetHostel, GetUnverifiedHostel, DeleteHostel, EditHostel } from '../controller/Hostel.js';
 
 const router = express.Router();
 
-router.get('/', GetHostel);
-
+router.get('/verified', GetVerifiedHostel);
+router.post('/', GetHostel);
+router.get('/unverified', GetUnverifiedHostel);
 router.patch('/:id', EditHostel);
 router.delete('/:id', DeleteHostel);
 export default router;

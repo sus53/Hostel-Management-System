@@ -25,17 +25,30 @@ const HostelSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    image: {
+    imagepath1: {
         type: String,
         required: false
     },
-    imagepath: {
+    imagepath2: {
+        type: String,
+        required: false
+    },
+    imagepath3: {
         type: String,
         required: false
     },
     latlng: {
         type: Object,
+        required: true
+    },
+    isApprove: {
+        type: String,
+        default: "Pending",
         required: false
+    },
+    email: {
+        type: String,
+        required: true
     }
 }, { timestamps: true });
 const Hostel = new mongoose.model("Hostel", HostelSchema);

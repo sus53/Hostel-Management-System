@@ -38,7 +38,7 @@ const upload = multer({ storage });
 
 /*Routes with files*/
 
-app.post('/hostel/addhostel', upload.single('image'), AddHostel);
+app.post('/hostel/addhostel', upload.array('image', 3), AddHostel);
 
 
 /* Routes */

@@ -12,13 +12,13 @@ import StarIcon from '@mui/icons-material/Star';
 export const HostelDetail = () => {
 
   const state = useLocation().state.hostel;
-  const storage = useSelector(state => state);
+  const username = useSelector(state => state).user.username;
 
   const [selectedImage, setSelectedImage] = useState(null);
   const [activeSection, setActiveSection] = useState('description');
-  const [review, setReview] = useState({ username: storage.user.username, hostel: state.title, rating: 0 });
+  const [review, setReview] = useState({ username, hostel: state.title, rating: 1 });
   const [reviews, setReviews] = useState([]);
-  const [hoverStar, setHoverStar] = useState();
+  const [hoverStar, setHoverStar] = useState(1);
 
   const openImage = (image) => {
     setSelectedImage(image);
@@ -36,7 +36,7 @@ export const HostelDetail = () => {
     e.preventDefault();
     const res = await AddHostelReview(review);
     if (!res.success) return;
-    setReview({ username: storage.user.username, hostel: state.title, rating: 0, review: '' });
+    setReview({ username, hostel: state.title, rating: 1, review: '' });
     setHoverStar(0);
     getReviews();
   }
@@ -55,10 +55,10 @@ export const HostelDetail = () => {
       <div className='boys-hostel'>
         <div className='hostel-top'>
           <div className='image-section'>
-            <div><img src={`http://localhost:5000/assets/${state.imagepath}`} className='hostel-img full' onClick={() => openImage(img1)} /></div>
+            <div><img src={`http://localhost:5000/assets/${state.imagepath1}`} className='hostel-img full' onClick={() => openImage(img1)} /></div>
             <div className='two-img'>
-              <img src={img2} className='hostel-img' onClick={() => openImage(img2)} />
-              <img src={img3} className='hostel-img' onClick={() => openImage(img3)} />
+              <img src={`http://localhost:5000/assets/${state.imagepath2}`} className='hostel-img' onClick={() => openImage(img2)} />
+              <img src={`http://localhost:5000/assets/${state.imagepath3}`} className='hostel-img' onClick={() => openImage(img3)} />
             </div>
           </div>
           <div className='map-section'>

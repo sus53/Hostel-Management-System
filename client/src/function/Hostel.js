@@ -1,13 +1,32 @@
 import * as api from '../api/Hostel';
 
-export const GetHostel = async () => {
+export const GetVerifiedHostel = async () => {
     try {
-        const { data } = await api.GetHostel();
+        const { data } = await api.GetVerifiedHostel();
         return data
     } catch (error) {
         console.log(error)
     }
 }
+
+export const GetHostel = async (email) => {
+    try {
+        const { data } = await api.GetHostel(email);
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const GetUnverifiedHostel = async () => {
+    try {
+        const { data } = await api.GetUnverifiedHostel();
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 export const AddHostel = async (hostel) => {
     try {
         const { data } = await api.AddHostel(hostel);

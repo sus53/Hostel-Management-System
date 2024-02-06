@@ -11,8 +11,6 @@ export const Signup = () => {
   const dispatch = useDispatch();
 
   const [user, setUser] = useState({
-    firstname: "",
-    lastname: "",
     email: "",
     username: "",
     password: "",
@@ -63,14 +61,6 @@ export const Signup = () => {
           <p>Create New Account</p>
           <div className='signup-box'>
             <div>
-              <div className='inputBox'>
-                <input type='text' name="firstname" value={user.firstname} required='required' onChange={handleChange} />
-                <label>First Name</label>
-              </div>
-              <div className='inputBox'>
-                <input type='text' name="lastname" value={user.lastname} required='required' onChange={handleChange} />
-                <label>Last Name</label>
-              </div>
               <div className='inputBox'>
                 <input type='email' name="email" value={user.email} required='required' onChange={handleChange} />
                 <label>Email</label>

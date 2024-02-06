@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import PopUpMap from './PopUpMap';
-import { AddHostel } from '../../function/Hostel';
+import { AddHostel, GetVerifiedHostel } from '../../function/Hostel';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 function HostelForm({ formToggler, setHostel, hostel }) {
 
     const dispatch = useDispatch();
-    const dt = useSelector((state) => state);
+    const storage = useSelector((state) => state);
     const [isMap, setIsMap] = useState(false);
     const [response, setResponse] = useState(null);
 
@@ -14,7 +14,6 @@ function HostelForm({ formToggler, setHostel, hostel }) {
 
     const mapToggler = () => {
         setIsMap(!isMap);
-        console.log(dt)
     }
 
     const addHostelHandler = async (e) => {
@@ -26,16 +25,25 @@ function HostelForm({ formToggler, setHostel, hostel }) {
         formData.append("price", hostel.price);
         formData.append("location", hostel.location);
         formData.append("sex", hostel.sex);
+        formData.append("email", storage.user.email);
         formData.append("latlng", JSON.stringify(hostel.latlng));
-        if (hostel.imagepath) {
-            formData.append("image", hostel.image);
-            formData.append("imagepath", hostel.imagepath);
+        if (hostel.image) {
+            for (let index = 0; index < hostel.image.length; index++) {
+                formData.append("image", hostel.image[index]);
+            }
+
+            formData.append("imagepath1", hostel.imagepath1);
+            formData.append("imagepath2", hostel.imagepath2);
+            formData.append("imagepath3", hostel.imagepath3);
+
         }
         const res = await AddHostel(formData);
+        console.log(res)
+        console.log(hostel)
         setResponse(res);
         if (!res.success) return;
         formToggler();
-        setHostel()
+        setHostel({ title: "", description: "", room: "", image: [], price: "", location: "", sex: "Boys" })
     }
 
     return (
@@ -59,8 +67,17 @@ function HostelForm({ formToggler, setHostel, hostel }) {
                         <input type='text' value={hostel.price} onChange={(e) => setHostel({ ...hostel, price: e.target.value })} />
                     </div>
                     <div>
-                        <label>Image</label>
-                        <input type='file' onChange={(e) => setHostel({ ...hostel, image: e.target.files[0], imagepath: e.target.files[0].name })} />
+                        <label>Image 1</label>
+                        <input type='file' onChange={(e) => setHostel({ ...hostel, image: [...hostel.image, e.target.files[0]], imagepath1: e.target.files[0].name })} />
+                    </div>
+                    <div>
+                        <label>Image 2</label>
+                        <input type='file' onChange={(e) => setHostel({ ...hostel, image: [...hostel.image, e.target.files[0]], imagepath2: e.target.files[0].name })} />
+                    </div>
+
+                    <div>
+                        <label>Image 3</label>
+                        <input type='file' onChange={(e) => setHostel({ ...hostel, image: [...hostel.image, e.target.files[0]], imagepath3: e.target.files[0].name })} />
                     </div>
                 </div>
                 <div>

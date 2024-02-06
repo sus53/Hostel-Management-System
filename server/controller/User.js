@@ -33,13 +33,13 @@ export const SignupUser = async (req, res) => {
         if (logWithToken) {
             const hashedPassword = await bcrypt.hash(user.sub, salt);
             newUser = new User({
-                firstname: user.given_name, lastname: user.family_name, email: user.email, username: user.name, password: hashedPassword, gender: "Male"
+                email: user.email, username: user.name, password: hashedPassword, gender: "Male"
             })
         }
         else {
             const hashedPassword = await bcrypt.hash(user.password, salt);
             newUser = new User({
-                firstname: user.firstname, lastname: user.lastname, email: user.email, username: user.username, mobilenumber: user.mobilenumber, password: hashedPassword, gender: user.gender
+                email: user.email, username: user.username, mobilenumber: user.mobilenumber, password: hashedPassword, gender: user.gender
             })
         }
 
@@ -160,3 +160,36 @@ export const ForgotPassword = async (req, res) => {
         res.status(500).json({ message: error.message })
     }
 }
+
+export const EditUser = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { email, username, mobilenumber, isAdmin, isHostelOwner } = req.body;
+        const user = await User.findOne({ _id: id })
+        if (!user) {
+            return res.status(404).json({ message: "User not found" })
+        }
+        const updatedUser = await User.findByIdAndUpdate(
+            id,
+            { email, username, mobilenumber, isAdmin, isHostelOwner }
+        );
+        res.status(200).json({ message: 'user updated sucessfully', user: updatedUser, success: true })
+    } catch (error) {
+        console.error('error updating user', error);
+        res.status(500).json({ message: 'Error updating user', success: false })
+    }
+}
+
+//delete user
+export const DeleteUser = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        await User.findOneAndDelete({ _id: id });
+
+        res.status(200).json({ message: 'user deleted sucessfully', success: true });
+    } catch (error) {
+        console.error('error deleting user', error);
+        res.status(500).json({ message: 'error deleting user', success: false })
+    }
+}    

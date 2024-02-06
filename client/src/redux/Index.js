@@ -4,8 +4,8 @@ const authSlice = createSlice({
     name: "auth",
     initialState: {
         theme: "light",
-        user: null,
-        token: null
+        user: "",
+        token: null,
     },
     reducers: {
         setTheme: (state, action) => {
@@ -16,7 +16,7 @@ const authSlice = createSlice({
             state.token = action.payload.token;
         },
         setLogout: (state) => {
-            state.user = null;
+            state.user = "";
             state.token = null;
         }
     }

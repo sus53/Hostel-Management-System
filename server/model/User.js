@@ -1,14 +1,6 @@
 import mongoose from 'mongoose';
 
 const userSchema = new mongoose.Schema({
-    firstname: {
-        type: String,
-        required: true
-    },
-    lastname: {
-        type: String,
-        required: true
-    },
     email: {
         type: String,
         required: true
@@ -27,6 +19,14 @@ const userSchema = new mongoose.Schema({
     gender: {
         type: String,
         required: true
+    },
+    isAdmin: {
+        type: String,
+        default: "false"
+    },
+    isHostelOwner: {
+        type: String,
+        default: "false"
     }
 })
 const User = new mongoose.model("User", userSchema);

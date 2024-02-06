@@ -4,7 +4,7 @@ import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import './HostelMap.scss';
 import { LocationOn, Star } from '@mui/icons-material';
-import { GetHostel } from '../../function/Hostel';
+import { GetVerifiedHostel } from '../../function/Hostel';
 function HostelMap() {
 
     const [currentUser, setCurrentUser] = useState(null);
@@ -24,7 +24,7 @@ function HostelMap() {
 
     const getPins = async () => {
         try {
-            setPins(await GetHostel());
+            setPins(await GetVerifiedHostel());
         } catch (error) {
             console.log(error)
         }
