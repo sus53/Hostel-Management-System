@@ -55,10 +55,10 @@ export const HostelDetail = () => {
       <div className='boys-hostel'>
         <div className='hostel-top'>
           <div className='image-section'>
-            <div><img src={`http://localhost:5000/assets/${state.imagepath1}`} className='hostel-img full' onClick={() => openImage(img1)} /></div>
+            <div><img src={`https://hostel-management-system-five.vercel.app/${state.imagepath1}`} className='hostel-img full' onClick={() => openImage(img1)} /></div>
             <div className='two-img'>
-              <img src={`http://localhost:5000/assets/${state.imagepath2}`} className='hostel-img' onClick={() => openImage(img2)} />
-              <img src={`http://localhost:5000/assets/${state.imagepath3}`} className='hostel-img' onClick={() => openImage(img3)} />
+              <img src={`https://hostel-management-system-five.vercel.app/${state.imagepath2}`} className='hostel-img' onClick={() => openImage(img2)} />
+              <img src={`https://hostel-management-system-five.vercel.app/${state.imagepath3}`} className='hostel-img' onClick={() => openImage(img3)} />
             </div>
           </div>
           <div className='map-section'>

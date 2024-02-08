@@ -30,7 +30,7 @@ export const Hostel = () => {
                     hostels && hostels.map((hostel) => (
                         <div className='hostel-boys-item' key={hostel._id} >
                             <div>
-                                <img src={`http://localhost:5000/assets/${hostel.imagepath1}`} />
+                                <img src={`https://hostel-management-system-five.vercel.app/${hostel.imagepath1}`} />
                             </div>
                             <div className='hostel-highlight'>
                                 <div className='highlight-one'>
