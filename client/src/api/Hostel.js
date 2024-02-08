@@ -1,5 +1,5 @@
 import axios from "axios";
-const URL = "http://localhost:5000/hostel"
+const URL = "https://hostel-management-system-five.vercel.app/hostel"
 
 export const GetVerifiedHostel = () => axios.get(URL + "/verified");
 export const GetUnverifiedHostel = () => axios.get(URL + "/unverified");

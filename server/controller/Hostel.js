@@ -84,3 +84,7 @@ export const DeleteHostel = async (req, res) => {
         res.status(500).json({ message: 'error deleting hostel', error: error.message })
     }
 }
+
+export const BookHostel = async (req, res) => {
+    
+}

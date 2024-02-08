@@ -48,7 +48,6 @@ app.use('/hostelreview', HostelReviewRouter);
 
 /* Mongoose Setup */
 
-const PORT = process.env.PORT || 5000;
 mongoose.connect(process.env.mongodb).then(() =>
-    app.listen(PORT, () => console.log(`sanoghar is running on port ${PORT}`)))
+    app.listen("https://hostel-management-system-five.vercel.app", () => console.log(`sanoghar is running on "https://hostel-management-system-five.vercel.app"`)))
     .catch(err => console.log(err));

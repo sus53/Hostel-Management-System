@@ -87,6 +87,9 @@ export const HostelDetail = () => {
               <p>{state.description}</p>
               <h4>Available Rooms</h4>
               <p><i className="fa-solid fa-bed"></i>{state.room}</p>
+              <h4>Price</h4>
+              <p><i className="fa-solid "></i>{state.price}</p>
+              <button className='btn-booking'  >Book now!</button>
             </div>
           )}
           {activeSection === 'reviews' && (

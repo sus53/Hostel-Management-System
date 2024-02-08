@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setTheme } from '../../redux/Index';
 
 const Navbar = () => {
-  const [openHostel, setOpenHostel] = useState(false);
+
   const [openProfile, setOpenProfile] = useState(false);
 
   const dispatch = useDispatch();
@@ -35,7 +35,6 @@ const Navbar = () => {
           <li><Link to={'/map'} className='link'>Map</Link></li>
           <li><Link className='link' to='/hostel'>Hostel</Link></li>
           <li className='profile' onClick={() => setOpenProfile((prev) => !prev)}>
-
             {
               storage.user ?
                 <>
@@ -45,7 +44,7 @@ const Navbar = () => {
                   )}
                 </>
                 :
-                <Link to='/login' className='link'>Login</Link>
+                <Link to='/login' className='link' onClick={() => setOpenProfile(false)} >Login</Link>
             }
 
           </li>
